@@ -1,15 +1,14 @@
-import { AxiosRequestConfig, Method, AxiosResponse, AxiosError } from "axios";
-import buildFullPath from "axios/lib/core/buildFullPath";
-import settle from "axios/lib/core/settle";
-import buildURL from "axios/lib/helpers/buildURL";
-import parseHeaders from "axios/lib/helpers/parseHeaders";
-import utils from "axios/lib/utils";
-
-type Config = Exclude<AxiosRequestConfig, "method"> & { method: Method };
-
+import { AxiosResponse, AxiosError, InternalAxiosRequestConfig, AxiosPromise } from "axios";
+/* eslint-disable import/no-unresolved */
+import buildFullPath from "axios/unsafe/core/buildFullPath.js";
+import settle from "axios/unsafe/core/settle.js";
+import buildURL from "axios/unsafe/helpers/buildURL.js";
+import parseHeaders from "axios/unsafe/helpers/parseHeaders.js";
+import utils from "axios/unsafe/utils.js";
+/* eslint-enable import/no-unresolved */
 type UpperCaseMethod = "GET" | "DELETE" | "HEAD" | "OPTIONS" | "POST" | "PUT" | "PATCH" | "PURGE" | "LINK" | "UNLINK";
 
-export default function xhrAdapter<T>(config: Config): Promise<AxiosResponse<T>> {
+export default function xhrAdapter<T>(config: InternalAxiosRequestConfig): AxiosPromise {
   return new Promise((resolve, reject) => {
     let requestData = config.data;
     const requestHeaders = config.headers ?? {};
@@ -91,10 +90,10 @@ export default function xhrAdapter<T>(config: Config): Promise<AxiosResponse<T>>
       if (config.responseType === "stream") {
         return reject(new AxiosError("using stream as `responseType` is not supported in browser"));
       }
-      responseType = config.responseType;
+      responseType = config.responseType == "formdata" ? "text" : config.responseType;
     }
 
-    const method = config.method.toUpperCase() as UpperCaseMethod;
+    const method = (config.method || "get").toUpperCase() as UpperCaseMethod;
     if (method === "UNLINK" || method === "PURGE" || method === "LINK") {
       reject(new AxiosError(`${method} is not a supported method by GM.xmlHttpRequest`));
     } else {

@@ -1,6 +1,6 @@
 {
-  "name": "axios-userscript-adapter",
-  "version": "0.2.0-alpha.2",
+  "name": "@mr.python/axios-userscript-adapter",
+  "version": "1.0.0",
   "description": "GM.xmlHttpRequest adapter for Axios HTTP client",
   "type": "module",
   "main": "dist/index.js",
@@ -11,14 +11,14 @@
     "prebuild": "rimraf ./dist/",
     "build": "tsc --declaration --emitDeclarationOnly && webpack && node build.cjs",
     "version": "yarn build",
-    "lint": "eslint ./**/*.ts",
+    "lint": "eslint src/",
     "format": "prettier --write ./",
     "format:check": "prettier --check ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Trim21/axios-userscript-adapter.git"
+    "url": "git@github.com:Mr-Python-in-China/axios-userscript-adapter.git"
   },
   "files": [
     "dist",
@@ -31,10 +31,7 @@
     "greasemonkey",
     "tampermonkey"
   ],
-  "author": {
-    "name": "Trim21",
-    "email": "trim21me@gmail.com"
-  },
+  "author": "Trim21 MrPython",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Trim21/axios-userscript-adapter/issues"
@@ -42,12 +39,13 @@
   "homepage": "https://github.com/Trim21/axios-userscript-adapter",
   "devDependencies": {
     "@types/greasemonkey": "^4.0.4",
-    "@typescript-eslint/eslint-plugin": "^5.37.0",
-    "@typescript-eslint/parser": "^5.37.0",
-    "axios": "^1.0.0",
+    "@types/node": "^20.14.5",
+    "@typescript-eslint/eslint-plugin": "^7.3.11",
+    "@typescript-eslint/parser": "^7.0.0",
+    "axios": "^1.7.2",
     "esbuild": "^0.15.10",
     "esbuild-loader": "^2.20.0",
-    "eslint": "^8.23.1",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-node": "11.1.0",
@@ -55,7 +53,7 @@
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
-    "typescript": "^4.8.3",
+    "typescript": "^5.4.5",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
@@ -63,9 +61,8 @@
     "*.{ts,js,json,yaml,yml}": "prettier -w"
   },
   "peerDependencies": {
-    "axios": "^1.0.0-alpha.1"
+    "axios": "^1.0.0"
   },
-  "dependencies": {
-    "lint-staged": "^12.5.0 || ^13.0.0"
-  }
+  "dependencies": {},
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -1,4 +1,4 @@
-declare module "axios/lib/core/settle" {
+declare module "axios/unsafe/core/settle.js" {
   import { AxiosResponse } from "axios";
   const settle: <T>(
     resolve: (value: AxiosResponse<T>) => void,
